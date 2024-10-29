@@ -22,10 +22,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:	
 	if (is_moving):
 		if (_elapsed < _movetime):
-			_elapsed += delta
+			_elapsed = minf(_elapsed + delta, _movetime)
 			global_position = _start.lerp(_target, _elapsed / _movetime)
 		else:
 			is_moving = false
+			_h = 0
+			_v = 0
 	elif _h != 0 or _v != 0:
 		var cell   = tilemap.local_to_map(position)
 		var factor = tilemap.get_cell_tile_data(cell).get_custom_data("factor")

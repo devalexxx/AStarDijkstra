@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b2ohhttucifxj"]
 
-[ext_resource type="Script" path="res://scripts/vehicule_controller.gd" id="1_scala"]
+[ext_resource type="Script" path="res://scripts/path_controller.gd" id="1_ploev"]
 [ext_resource type="Texture2D" uid="uid://gc6ce2ytx5dt" path="res://assets/Cars_final.png" id="2_8bw4f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vplas"]
@@ -21,7 +21,7 @@ region = Rect2(198, 259, 181, 90)
 
 [node name="Vehicule" type="Node2D"]
 position = Vector2(8, 8)
-script = ExtResource("1_scala")
+script = ExtResource("1_ploev")
 
 [node name="Forward" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.125)
