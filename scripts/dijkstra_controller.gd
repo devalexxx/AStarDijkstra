@@ -3,6 +3,9 @@ extends "res://scripts/path_controller.gd"
 @export
 var target : Node2D
 
+@export
+var obstacles : TileMapLayer
+
 class DijkstraNode:
 	var loc : Vector2i
 	var p   : DijkstraNode
@@ -31,7 +34,7 @@ func _ready() -> void:
 				_path = Utility.build_path(current)
 				break
 			
-			for child in Utility.get_valid_neighbors(current.loc, tilemap):
+			for child in Utility.get_valid_neighbors(current.loc, tilemap, obstacles):
 				var i = Utility.array_find(ilist, func(elem): return elem.loc == child)
 				var t = tilemap.get_cell_tile_data(child).get_custom_data("factor")
 				if i >= 0:

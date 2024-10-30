@@ -3,6 +3,9 @@ extends "res://scripts/path_controller.gd"
 @export
 var target : Node2D
 
+@export
+var obstacles : TileMapLayer
+
 class AStarNode:
 	var loc : Vector2i
 	var p   : AStarNode
@@ -34,7 +37,7 @@ func _ready() -> void:
 			_path = Utility.build_path(current)
 			break
 			
-		var children = Utility.get_valid_neighbors(current.loc, tilemap).reduce(func(acc, elem): return acc + [AStarNode.new(elem, current)], [])		
+		var children = Utility.get_valid_neighbors(current.loc, tilemap, obstacles).reduce(func(acc, elem): return acc + [AStarNode.new(elem, current)], [])		
 		for child in children:
 			if Utility.array_find(clist, func(elem): return elem.loc == child.loc) == -1:
 				child.g = current.g + 1.0 * tilemap.get_cell_tile_data(child.loc).get_custom_data("factor")
